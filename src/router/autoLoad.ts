@@ -1,6 +1,6 @@
 // 自动配置路由
 import { RouteRecordRaw } from "vue-router";
-import { toHumpName } from "../utils";
+import { toHumpName } from "@/utils";
 
 // 编辑文件夹拿父级路由页面
 const layouts = import.meta.globEager("../layouts/*.vue");
