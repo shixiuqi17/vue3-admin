@@ -1,5 +1,5 @@
 <template>
-  <div>asjdklsjaldkjslk</div>
+  <div>member/mail.vue</div>
 </template>
 
 <script lang="ts" setup></script>
