@@ -1,3 +1,4 @@
+// 配置名别 （path包 + @types/node类型提示）
 import path from "path";
 import { AliasOptions } from "vite";
 
