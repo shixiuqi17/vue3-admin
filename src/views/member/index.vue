@@ -1,5 +1,4 @@
 <template>
-  <div>members.vue</div>
   <router-view></router-view>
 </template>
 

@@ -1,5 +1,4 @@
 <template>
-  <div>admin.vue</div>
   <router-view></router-view>
 </template>
 
