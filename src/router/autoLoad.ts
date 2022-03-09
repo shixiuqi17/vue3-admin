@@ -47,4 +47,9 @@ export default {
   route: { path: "/routerName" }
 } */
 
-export default getRoutes();
+const routes =
+  import.meta.env.VITE_ROUTER_AUTOLOAD == "true"
+    ? getRoutes()
+    : ([] as RouteRecordRaw[]);
+
+export default routes;

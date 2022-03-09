@@ -1,7 +1,6 @@
 interface ViteEnv {
-  VITE_SOME_KEY: number;
+  VITE_ROUTER_AUTOLOAD: string;
   VITE_API_URL: string;
-  VITE_TEST: boolean;
 }
 
 interface ImportMetaEnv extends ViteEnv {
