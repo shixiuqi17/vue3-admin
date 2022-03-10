@@ -2,14 +2,14 @@
   <div class="login-container">
     <div class="login-form-wapper">
       <h1 class="hello">hello!</h1>
-      <div class="login-form-title">欢迎来到Vue Admin</div>
+      <div class="login-form-title">{{ t("welcome") }}</div>
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules">
         <!-- 用户名 -->
         <el-form-item prop="name">
           <el-input
             :prefix-icon="User"
             v-model="loginForm.name"
-            placeholder="请输入用户名"
+            :placeholder="t('pleaseEnterUserName')"
             size="large"
             clearable
           ></el-input>
@@ -20,7 +20,7 @@
           <el-input
             :prefix-icon="Unlock"
             v-model="loginForm.password"
-            placeholder="请输入密码"
+            :placeholder="t('pleaseEnterPassword')"
             size="large"
             show-password
             type="password"
@@ -34,8 +34,12 @@
             type="primary"
             @click="submitForm(loginFormRef)"
             size="large"
-            >提交</el-button
+            >{{ t("submit") }}</el-button
           >
+          <el-button @click="resetForm(loginFormRef)" size="large">{{
+            t("reset")
+          }}</el-button>
+          <el-button @click="changeLanguage">切换语言</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -46,16 +50,27 @@
 import { reactive, ref } from "vue";
 import type { ElForm } from "element-plus";
 import { Unlock, User } from "@element-plus/icons-vue";
+import { useI18n } from "vue-i18n";
+import { ElMessage } from "element-plus";
 
 type FormInstance = InstanceType<typeof ElForm>;
 
 const loginFormRef = ref<FormInstance>();
+const { locale, t } = useI18n();
 
 // 定义表单
-const loginForm = reactive({
+let loginForm = reactive({
   name: "",
   password: ""
 });
+
+const changeLanguage = () => {
+  locale.value = locale.value == "zh-CN" ? "en-US" : "zh-CN";
+  ElMessage({
+    message: t("switchLanguageSucceeded"),
+    type: "success"
+  });
+};
 
 // 验证函数
 const loginFormRules = reactive({
@@ -80,13 +95,19 @@ const loginFormRules = reactive({
 });
 
 // 提交表单
-const submitForm = (formRef: FormInstance | undefined) => {
-  if (!formRef) return;
-  formRef.validate((vaild) => {
+const submitForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
+  formEl.validate((vaild) => {
     if (!vaild) {
       return false;
     }
   });
+};
+
+// 重置表单
+const resetForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
+  formEl.resetFields();
 };
 </script>
 
