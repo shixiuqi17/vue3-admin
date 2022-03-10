@@ -67,7 +67,7 @@ let loginForm = reactive({
 const changeLanguage = () => {
   locale.value = locale.value == "zh-CN" ? "en-US" : "zh-CN";
   ElMessage({
-    message: t("switchLanguageSucceeded"),
+    message: t("languageSwitchSucceeded"),
     type: "success"
   });
 };

@@ -1,6 +1,6 @@
 const text = {
   welcome: "Welcome to Vue Admin",
-  switchLanguageSucceeded: "Language switching succeeded!",
+  languageSwitchSucceeded: "Language switching succeeded!",
   pleaseEnterUserName: "please enter user name",
   pleaseEnterPassword: "please enter password"
 };
