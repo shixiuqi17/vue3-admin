@@ -1,5 +1,6 @@
 <template>
-  <div>asjdklsjaldkjslk</div>
+  <div>home.bue</div>
+  <router-view></router-view>
 </template>
 
 <script lang="ts" setup></script>

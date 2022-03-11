@@ -49,14 +49,13 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import type { ElForm } from "element-plus";
+import { ElMessage } from "element-plus";
 import { Unlock, User } from "@element-plus/icons-vue";
 import { useI18n } from "vue-i18n";
-import { ElMessage } from "element-plus";
 
 type FormInstance = InstanceType<typeof ElForm>;
 
 const loginFormRef = ref<FormInstance>();
-const { locale, t } = useI18n();
 
 // 定义表单
 let loginForm = reactive({
@@ -64,6 +63,7 @@ let loginForm = reactive({
   password: ""
 });
 
+const { locale, t } = useI18n();
 const changeLanguage = () => {
   locale.value = locale.value == "zh-CN" ? "en-US" : "zh-CN";
   ElMessage({
@@ -72,26 +72,32 @@ const changeLanguage = () => {
   });
 };
 
+// 用户名验证规则
+const validUserName = (rule: any, value: any, callback: any) => {
+  if (value === "") {
+    callback(new Error(t("userNameRequired")));
+  } else if (value.length < 3 || value.length > 10) {
+    callback(new Error(t("userNameLength", { length: "3 ~ 10" })));
+  } else {
+    callback();
+  }
+};
+
+// 密码验证规则
+const validPassword = (rule: any, value: any, callback: any) => {
+  if (value === "") {
+    callback(new Error(t("passwordRequired")));
+  } else if (value.length < 6 || value.length > 15) {
+    callback(new Error(t("passwordLength", { length: "6 ~ 15" })));
+  } else {
+    callback();
+  }
+};
+
 // 验证函数
 const loginFormRules = reactive({
-  name: [
-    { required: true, message: "用户名不能为空", trigger: "blur" },
-    {
-      min: 3,
-      max: 10,
-      message: "用户名长度需在3-10个字符之间",
-      trigger: "blur"
-    }
-  ],
-  password: [
-    { required: true, message: "密码不能为空", trigger: "blur" },
-    {
-      min: 3,
-      max: 15,
-      message: "密码长度需在3-15个字符之间",
-      trigger: "blur"
-    }
-  ]
+  name: [{ validator: validUserName, trigger: "blur" }],
+  password: [{ validator: validPassword, trigger: "blur" }]
 });
 
 // 提交表单
