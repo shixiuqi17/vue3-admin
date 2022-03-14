@@ -6,7 +6,8 @@ const text = {
   userNameRequired: "用户名不能为空",
   passwordRequired: "密码不能为空",
   userNameLength: "用户名长度需在{length}个字符",
-  passwordLength: "密码长度需在{length}个字符"
+  passwordLength: "密码长度需在{length}个字符",
+  loginSuccessful: "登录成功!"
 };
 
 const btn = {

@@ -1,19 +1,6 @@
 import { axios } from "@/plugins/axios";
 
-class userApi {
-  userInfo() {
-    return axios.request<UserInfoInterFace>({
-      url: "info"
-    });
-  }
-
-  login() {
-    return axios.request<LoginInterFace>({
-      url: "login"
-    });
-  }
-}
-
+// 用户信息
 interface UserInfoInterFace {
   name: string;
   age: number;
@@ -21,8 +8,21 @@ interface UserInfoInterFace {
   avatar: string;
 }
 
+export function userInfo() {
+  return axios.request<UserInfoInterFace>({
+    url: "info"
+  });
+}
+
+// 登录
 interface LoginInterFace {
   token: string;
 }
 
-export default new userApi();
+export function login(data: { name: string; password: string }) {
+  return axios.request<LoginInterFace>({
+    url: "login",
+    method: "post",
+    data
+  });
+}

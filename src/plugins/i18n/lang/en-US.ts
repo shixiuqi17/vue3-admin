@@ -6,7 +6,8 @@ const text = {
   userNameRequired: "user name cannot be empty",
   passwordRequired: "password cannot be empty",
   userNameLength: "The user name must be {length} characters",
-  passwordLength: "The password must be {length} characters"
+  passwordLength: "The password must be {length} characters",
+  loginSuccessful: "Login is successful!"
 };
 
 const btn = {

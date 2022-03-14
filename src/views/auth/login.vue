@@ -48,19 +48,22 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
 import type { ElForm } from "element-plus";
 import { ElMessage } from "element-plus";
 import { Unlock, User } from "@element-plus/icons-vue";
 import { useI18n } from "vue-i18n";
+import { login } from "@/apis/user";
+import store from "@/utils/store";
 
 type FormInstance = InstanceType<typeof ElForm>;
 
 const loginFormRef = ref<FormInstance>();
-
+const router = useRouter();
 // 定义表单
 let loginForm = reactive({
-  name: "",
-  password: ""
+  name: "admin",
+  password: "123456"
 });
 
 const { locale, t } = useI18n();
@@ -103,10 +106,21 @@ const loginFormRules = reactive({
 // 提交表单
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.validate((vaild) => {
+  formEl.validate(async (vaild) => {
+    // 验证必填
     if (!vaild) {
       return false;
     }
+
+    const {
+      data: { token }
+    } = await login(loginForm);
+    store.set("token", { token });
+    ElMessage({
+      message: t("loginSuccessful"),
+      type: "success"
+    });
+    router.push({ name: "home" });
   });
 };
 
