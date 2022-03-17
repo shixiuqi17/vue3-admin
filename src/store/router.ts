@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { useRouter } from "vue-router";
-export const router = defineStore("router", {
+export const useRouterStore = defineStore("router", {
   state: () => {
     return {
       routes: getRoutes()
@@ -10,8 +10,12 @@ export const router = defineStore("router", {
 
 function getRoutes() {
   const router = useRouter();
-  const routes = router.getRoutes().filter((route) => {
-    return route.children.length && !route.meta.hidden;
-  });
+  const routes = router
+    .getRoutes() // 获取所有的路由
+    .filter((route) => route.children.length && !route.meta.hidden)
+    .map((route) => {
+      route.children = route.children.filter((route) => !route.meta?.hidden);
+      return route;
+    });
   return routes;
 }

@@ -1,10 +1,11 @@
 <template>
   <el-menu
     :collapse="isCollapse"
-    unique-opened
     background-color="#304156"
     text-color="#bfcbd9"
     default-active="/home"
+    class="el-menu-vertical-demo"
+    unique-opened
     router
   >
     <el-sub-menu
@@ -14,21 +15,25 @@
     >
       <template #title>
         <i :class="['menu-icon', 'iconfont', route.meta.icon]"></i>
-        <span>{{ route.meta.title }}</span>
+        <span v-if="showChinese">{{ route.meta.title }}</span>
+        <span v-else>{{ route.name }}</span>
       </template>
       <el-menu-item
         :index="routeLink(route.path, routeChild.path)"
         v-for="(routeChild, routeChildIndex) in route.children"
         :key="routeChildIndex"
-        >{{ routeChild.meta?.title }}
+      >
+        <span v-if="showChinese">{{ routeChild.meta?.title }}</span>
+        <span v-else>{{ routeChild.name }}</span>
       </el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>
 
 <script lang="ts" setup>
-import { onUnmounted, ref } from "vue";
-import { router } from "@/store/router";
+import { onUnmounted, ref, watch } from "vue";
+import { useRouterStore } from "@/store/router";
+import { useI18n } from "vue-i18n";
 import emitter from "@/plugins/mitt";
 
 // 收缩侧边栏
@@ -40,14 +45,33 @@ onUnmounted(() => {
   emitter.off("isCollapse");
 });
 
-const routerList = router();
+// 获取渲染menu的路由列表
+const routerList = useRouterStore();
+
 // menu菜单路由跳转
 const routeLink = (routePath: string, routeChildPath: string) => {
-  if (routePath === "/home") {
-    return "/home";
+  if (routePath === "") {
+    return routeChildPath;
+  } else if (routeChildPath === "") {
+    return routePath;
   }
   return `${routePath}/${routeChildPath}`;
 };
+
+// 菜单栏切换语言，useI18n只能在setup函数下使用，暂未找到解决方案
+const { locale } = useI18n();
+let showChinese = ref(true);
+watch(
+  locale,
+  (val) => {
+    if (val === "zh-CN") {
+      showChinese.value = true;
+    } else {
+      showChinese.value = false;
+    }
+  },
+  { immediate: true }
+);
 
 console.log(routerList.routes);
 </script>
@@ -69,5 +93,8 @@ h4 {
   width: 24px;
   text-align: center;
   font-size: 18px;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
 }
 </style>
