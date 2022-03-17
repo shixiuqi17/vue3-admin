@@ -1,43 +1,55 @@
 <template>
   <el-menu
-    default-active="2"
     :collapse="isCollapse"
     unique-opened
     background-color="#304156"
     text-color="#bfcbd9"
+    default-active="/home"
+    router
   >
-    <!-- <h4>vue admin</h4> -->
-    <el-sub-menu index="1">
+    <el-sub-menu
+      :index="routeIndex + ''"
+      v-for="(route, routeIndex) in routerList.routes"
+      :key="routeIndex"
+    >
       <template #title>
-        <el-icon><location /></el-icon>
-        <span>Navigator One</span>
+        <i :class="['menu-icon', 'iconfont', route.meta.icon]"></i>
+        <span>{{ route.meta.title }}</span>
       </template>
-      <el-menu-item index="1-1">item one</el-menu-item>
-      <el-menu-item index="1-2">item one</el-menu-item>
-      <el-menu-item index="1-3">item three</el-menu-item>
-    </el-sub-menu>
-    <el-sub-menu index="2">
-      <template #title>
-        <el-icon><location /></el-icon>
-        <span>Navigator One</span>
-      </template>
-      <el-menu-item index="2-2">item one</el-menu-item>
-      <el-menu-item index="2-4">item one</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
+      <el-menu-item
+        :index="routeLink(route.path, routeChild.path)"
+        v-for="(routeChild, routeChildIndex) in route.children"
+        :key="routeChildIndex"
+        >{{ routeChild.meta?.title }}
+      </el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import {
-  Location,
-  Document,
-  Menu as IconMenu,
-  Setting
-} from "@element-plus/icons-vue";
+import { onUnmounted, ref } from "vue";
+import { router } from "@/store/router";
+import emitter from "@/plugins/mitt";
 
+// 收缩侧边栏
 let isCollapse = ref(false);
+emitter.on("isCollapse", (val) => {
+  isCollapse.value = val as boolean;
+});
+onUnmounted(() => {
+  emitter.off("isCollapse");
+});
+
+const routerList = router();
+// menu菜单路由跳转
+const routeLink = (routePath: string, routeChildPath: string) => {
+  if (routePath === "/home") {
+    return "/home";
+  }
+  return `${routePath}/${routeChildPath}`;
+};
+
+console.log(routerList.routes);
 </script>
 
 <style lang="scss" scoped>
@@ -50,5 +62,12 @@ h4 {
 }
 .el-menu {
   overflow: hidden;
+}
+.menu-icon {
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
 }
 </style>

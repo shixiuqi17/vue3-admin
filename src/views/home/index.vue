@@ -27,10 +27,10 @@
     </el-card>
     <div class="echarts">
       <div>
-        <div class="echart" id="echart1"></div>
+        <div class="echart1" id="echart1"></div>
       </div>
       <div>
-        <div class="echart" id="echart2"></div>
+        <div class="echart2" id="echart2"></div>
       </div>
     </div>
   </div>
@@ -130,8 +130,12 @@ nextTick(() => {
     display: flex;
     justify-content: space-between;
     background-color: #fff;
-    .echart {
-      width: 800px;
+    .echart1 {
+      width: 500px;
+      height: 300px;
+    }
+    .echart2{
+      width: 500px;
       height: 500px;
     }
   }

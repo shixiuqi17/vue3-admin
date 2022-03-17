@@ -1,6 +1,15 @@
 <template>
   <div class="navbar">
-    <i class="collapse iconfont icon-cebianlanshousuo"></i>
+    <i
+      v-if="isCollapse"
+      class="collapse iconfont icon-cebianlandanchu"
+      @click="toggleSideBar"
+    ></i>
+    <i
+      v-else
+      class="collapse iconfont icon-cebianlanshousuo"
+      @click="toggleSideBar"
+    ></i>
     <div>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
@@ -60,6 +69,8 @@ import { ArrowDown } from "@element-plus/icons-vue";
 import { useI18n } from "vue-i18n";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
+import { ref } from "vue";
+import emitter from "@/plugins/mitt";
 
 const router = useRouter();
 
@@ -72,6 +83,13 @@ const changeLanguage = (language: string) => {
     message: t("languageSwitchSucceeded"),
     type: "success"
   });
+};
+
+// 切换侧边栏;
+let isCollapse = ref(false);
+const toggleSideBar = () => {
+  isCollapse.value = !isCollapse.value;
+  emitter.emit("isCollapse", isCollapse.value);
 };
 
 // 退出登录

@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.26.0",
     "element-plus": "^2.0.5",
+    "mitt": "^3.0.0",
     "mockjs": "^1.1.0",
     "pinia": "^2.0.12",
     "vue": "^3.2.25",

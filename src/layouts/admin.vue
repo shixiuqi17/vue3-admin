@@ -1,7 +1,7 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside width="200px"> <EMenu /></el-aside>
+      <el-aside width="auto "> <EMenu /></el-aside>
       <el-container>
         <el-header>
           <Navbar />

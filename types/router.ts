@@ -2,9 +2,9 @@ import "vue-router";
 
 declare module "vue-router" {
   interface RouteMeta {
-    authentication?: boolean;
-    hidden?: boolean;
-    title?: string;
-    icon?: string;
+    authentication?: boolean; //登录后才可进入
+    hidden?: boolean; //是否在menu显示
+    title?: string; //显示在menu的标题
+    icon?: string; //显示在menu的图标
   }
 }
