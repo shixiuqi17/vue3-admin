@@ -14,6 +14,13 @@ const routers = [
     meta: { guest: true },
     component: () => import("@/views/auth/login.vue")
   },
+  // 没有的页面定向到404
+  {
+    path: "/:any(.*)",
+    name: "notFound",
+    meta: { hidden: false },
+    component: () => import("@/views/error/404.vue")
+  },
   ...homePage,
   ...errorPage,
   ...editorPage
