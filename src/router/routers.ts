@@ -19,7 +19,7 @@ const routers = [
     component: () => import("@/views/auth/login.vue")
   },
   {
-    path: "error/404",
+    path: "/error/404",
     name: "404",
     component: () => import("@/views/error/404.vue")
   }

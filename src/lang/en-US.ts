@@ -24,9 +24,9 @@ const rules = {
   userName3_10: "The length of user name should be between 3-10 characters"
 };
 
-const ch = {
+const en_us = {
   ...text,
   ...btn,
   rules
 };
-export default ch;
+export default en_us;

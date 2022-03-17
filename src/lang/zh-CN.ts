@@ -24,9 +24,9 @@ const rules = {
   userName3_10: "用户名长度需在3-10个字符之间"
 };
 
-const ch = {
+const zh_cn = {
   ...text,
   ...btn,
   rules
 };
-export default ch;
+export default zh_cn;
