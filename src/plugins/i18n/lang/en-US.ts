@@ -1,5 +1,5 @@
 const text = {
-  welcome: "Welcome to Vue Admin",
+  welcome: "",
   languageSwitchSucceeded: "Language switching succeeded!",
   pleaseEnterUserName: "please enter user name",
   pleaseEnterPassword: "please enter password",
@@ -7,12 +7,17 @@ const text = {
   passwordRequired: "password cannot be empty",
   userNameLength: "The user name must be {length} characters",
   passwordLength: "The password must be {length} characters",
-  loginSuccessful: "Login is successful!"
+  loginSuccessful: "Login is successful , Welcome to Vue Admin !",
+  accountError: "The account or password is incorrect"
 };
 
 const btn = {
   submit: "submit",
-  reset: "reset"
+  reset: "reset",
+  logout: "logout",
+  chinese: "中文简体",
+  english: "English",
+  backHomePage: "back to the home page"
 };
 
 const rules = {

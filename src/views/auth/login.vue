@@ -39,7 +39,6 @@
           <el-button @click="resetForm(loginFormRef)" size="large">{{
             t("reset")
           }}</el-button>
-          <el-button @click="changeLanguage">切换语言</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -66,14 +65,7 @@ let loginForm = reactive({
   password: "123456"
 });
 
-const { locale, t } = useI18n();
-const changeLanguage = () => {
-  locale.value = locale.value == "zh-CN" ? "en-US" : "zh-CN";
-  ElMessage({
-    message: t("languageSwitchSucceeded"),
-    type: "success"
-  });
-};
+const { t } = useI18n();
 
 // 用户名验证规则
 const validUserName = (rule: any, value: any, callback: any) => {
@@ -111,6 +103,15 @@ const submitForm = (formEl: FormInstance | undefined) => {
     if (!vaild) {
       return false;
     }
+    // 验证密码
+    if (loginForm.name !== "admin" || loginForm.password !== "123456") {
+      console.log(loginForm);
+      ElMessage({
+        message: t("accountError"),
+        type: "error"
+      });
+      return false;
+    }
 
     const {
       data: { token }
@@ -134,11 +135,11 @@ const resetForm = (formEl: FormInstance | undefined) => {
 <style lang="scss" scoped>
 .login-container {
   position: fixed;
-  background: url("@/assets/login_bg.jpg") no-repeat;
+  background: url("@/assets/images/login_bg.jpg") no-repeat;
   width: 100vw;
   height: 100vh;
   .login-form-wapper {
-    background: url("@/assets/login_form_bg.png") no-repeat;
+    background: url("@/assets/images/login_form_bg.png") no-repeat;
     width: 400px;
     padding: 30px 30px 15px;
     position: absolute;

@@ -7,12 +7,17 @@ const text = {
   passwordRequired: "密码不能为空",
   userNameLength: "用户名长度需在{length}个字符",
   passwordLength: "密码长度需在{length}个字符",
-  loginSuccessful: "登录成功!"
+  loginSuccessful: "登录成功 , 欢迎来到 Vue Admin !",
+  accountError: "账号或密码错误"
 };
 
 const btn = {
   submit: "提交",
-  reset: "重置"
+  reset: "重置",
+  logout: "退出登录",
+  chinese: "中文简体",
+  english: "English",
+  backHomePage: "回到首页"
 };
 
 const rules = {
