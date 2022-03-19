@@ -10,20 +10,20 @@
   >
     <el-sub-menu
       :index="routeIndex + ''"
-      v-for="(route, routeIndex) in routerList.routes"
+      v-for="(route, routeIndex) in routerStore.menus"
       :key="routeIndex"
     >
       <template #title>
-        <i :class="['menu-icon', 'iconfont', route.meta.icon]"></i>
-        <span v-if="showChinese">{{ route.meta.title }}</span>
+        <i :class="['menu-icon', 'iconfont', route.icon]"></i>
+        <span v-if="showChinese">{{ route.title }}</span>
         <span v-else>{{ route.name }}</span>
       </template>
       <el-menu-item
-        :index="routeLink(route.path, routeChild.path)"
+        :index="routeChild.routerLink"
         v-for="(routeChild, routeChildIndex) in route.children"
         :key="routeChildIndex"
       >
-        <span v-if="showChinese">{{ routeChild.meta?.title }}</span>
+        <span v-if="showChinese">{{ routeChild.title }}</span>
         <span v-else>{{ routeChild.name }}</span>
       </el-menu-item>
     </el-sub-menu>
@@ -32,7 +32,7 @@
 
 <script lang="ts" setup>
 import { onUnmounted, ref, watch } from "vue";
-import { useRouterStore } from "@/store/router";
+import { useMenuStore } from "@/store/menu";
 import { useI18n } from "vue-i18n";
 import emitter from "@/plugins/mitt";
 
@@ -46,17 +46,8 @@ onUnmounted(() => {
 });
 
 // 获取渲染menu的路由列表
-const routerList = useRouterStore();
-
-// menu菜单路由跳转
-const routeLink = (routePath: string, routeChildPath: string) => {
-  if (routePath === "") {
-    return routeChildPath;
-  } else if (routeChildPath === "") {
-    return routePath;
-  }
-  return `${routePath}/${routeChildPath}`;
-};
+const routerStore = useMenuStore();
+routerStore.menuInit();
 
 // 菜单栏切换语言，useI18n只能在setup函数下使用，暂未找到解决方案
 const { locale } = useI18n();
@@ -72,8 +63,6 @@ watch(
   },
   { immediate: true }
 );
-
-console.log(routerList.routes);
 </script>
 
 <style lang="scss" scoped>

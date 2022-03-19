@@ -5,13 +5,19 @@ const homePage = [
   {
     path: "/home",
     name: "home",
-    meta: { authentication: true, title: "首页", icon: "icon-home" },
+    meta: {
+      authentication: true,
+      menu: {
+        title: "首页",
+        icon: "icon-home"
+      }
+    },
     component: () => import("@/layouts/admin.vue"),
     children: [
       {
         path: "",
         name: "home",
-        meta: { title: "首页" },
+        meta: { menu: { title: "首页" } },
         component: () => import("@/views/home/index.vue")
       }
     ]

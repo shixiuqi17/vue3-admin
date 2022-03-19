@@ -7,7 +7,16 @@
           <Navbar />
           <HistoryNav />
         </el-header>
-        <el-main><router-view></router-view></el-main>
+        <el-main>
+          <router-view #default="{ Component }">
+            <transition
+              enter-active-class="animate__animated animate__fadeInRight"
+              leave-active-class="animate__animated animate__fadeOutLeft"
+            >
+              <component :is="Component"></component>
+            </transition>
+          </router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>

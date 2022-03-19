@@ -1,3 +1,4 @@
+// import { useMenuStore } from "@/store/menu";
 import store from "@/utils/store";
 import { RouteLocationNormalized, Router } from "vue-router";
 
@@ -9,6 +10,9 @@ class Guard {
       const token = store.get("token");
       if (this.isLogin(to, token?.token) === false) return { name: "login" };
       if (this.isGuest(to, token?.token) === false) return from;
+
+      // useMenuStore().addHistoryMenus(to)
+      // const routerList = useMenuStore();
     });
   }
 

@@ -1,5 +1,8 @@
 <template>
-  <div></div>
+  <div>
+    sakdjkslajdklasjdkjsad
+    sadsadjklj
+  </div>
 </template>
 
 <script lang="ts" setup></script>
