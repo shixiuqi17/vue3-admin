@@ -1,9 +1,9 @@
 <template>
   <el-menu
     :collapse="isCollapse"
+    :default-active="activePath"
     background-color="#304156"
     text-color="#bfcbd9"
-    default-active="/home"
     class="el-menu-vertical-demo"
     unique-opened
     router
@@ -15,26 +15,29 @@
     >
       <template #title>
         <i :class="['menu-icon', 'iconfont', route.icon]"></i>
-        <span v-if="showChinese">{{ route.title }}</span>
-        <span v-else>{{ route.name }}</span>
+        <span v-show="isChinese">{{ route.title }}</span>
+        <span v-show="!isChinese">{{ route.name }}</span>
       </template>
       <el-menu-item
         :index="routeChild.routerLink"
         v-for="(routeChild, routeChildIndex) in route.children"
         :key="routeChildIndex"
       >
-        <span v-if="showChinese">{{ routeChild.title }}</span>
-        <span v-else>{{ routeChild.name }}</span>
+        <span v-show="isChinese">{{ routeChild.title }}</span>
+        <span v-show="!isChinese">{{ routeChild.name }}</span>
       </el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>
 
 <script lang="ts" setup>
-import { onUnmounted, ref, watch } from "vue";
+import { onUnmounted, ref } from "vue";
 import { useMenuStore } from "@/store/menu";
-import { useI18n } from "vue-i18n";
 import emitter from "@/plugins/mitt";
+import { currentLang, currentRouterPath } from "./hooks";
+
+// menu菜单高亮，根据路由变化改变
+let activePath = currentRouterPath();
 
 // 收缩侧边栏
 let isCollapse = ref(false);
@@ -47,22 +50,8 @@ onUnmounted(() => {
 
 // 获取渲染menu的路由列表
 const routerStore = useMenuStore();
-routerStore.menuInit();
 
-// 菜单栏切换语言，useI18n只能在setup函数下使用，暂未找到解决方案
-const { locale } = useI18n();
-let showChinese = ref(true);
-watch(
-  locale,
-  (val) => {
-    if (val === "zh-CN") {
-      showChinese.value = true;
-    } else {
-      showChinese.value = false;
-    }
-  },
-  { immediate: true }
-);
+let isChinese = currentLang();
 </script>
 
 <style lang="scss" scoped>

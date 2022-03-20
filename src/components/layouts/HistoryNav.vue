@@ -1,31 +1,35 @@
 <template>
   <div class="history-list">
     <div
-      v-for="(item, index) in navList"
-      :key="index"
-      class="nav-item"
-      @click="deleteNavTag(index)"
+      v-for="(item, index) in menuStore.historyMenu"
+      :key="item.name"
+      :class="['nav-item', { active: activePath === item.routerLink }]"
+      @click="routerLink(item.routerLink as string)"
     >
-      {{ item }}<i class="iconfont icon-close"></i>
+      <span v-show="isChinese">{{ item.title }}</span>
+      <span v-show="!isChinese">{{ item.name }}</span>
+      <i
+        v-if="item.name !== 'home'"
+        class="iconfont icon-close"
+        @click.stop="menuStore.removeHistoryMenu(item, activePath)"
+      ></i>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { useMenuStore } from "@/store/menu";
+import { currentLang, currentRouterPath } from "./hooks";
+import { useRouter } from "vue-router";
 
-let navList = reactive([
-  "导航页面",
-  "导航页面1",
-  "导航页面2",
-  "导航页面3",
-  "导航页面4",
-  "导航页面5",
-  "导航页面6",
-  "导航页面7"
-]);
-const deleteNavTag = (index: number) => {
-  navList.splice(index, 1);
+const router = useRouter();
+let isChinese = currentLang();
+let activePath = currentRouterPath();
+
+// 历史菜单列表
+const menuStore = useMenuStore();
+const routerLink = (path: string) => {
+  router.push(path);
 };
 </script>
 
@@ -56,7 +60,7 @@ const deleteNavTag = (index: number) => {
     margin-left: 10px;
   }
   .nav-item {
-    // background-color: #55c5d6;
+    height: 30px;
     border: 1px solid #dcdfe6;
     box-sizing: border-box;
     color: #000;
@@ -65,17 +69,34 @@ const deleteNavTag = (index: number) => {
     font-size: 12px;
     display: flex;
     align-items: center;
+    text-decoration: none;
     cursor: pointer;
-    transition: all 1s;
+    transition: all 0.3s;
+    &.active {
+      background-color: #55c5d6;
+      border: 1px solid #55c5d6;
+      color: #fff;
+      i {
+        color: #fff;
+      }
+    }
+    &:hover {
+      background-color: #55c5d6;
+      border: 1px solid #55c5d6;
+      color: #fff;
+      i {
+        color: #fff;
+      }
+    }
     i {
       margin-left: 5px;
       font-size: 12px;
       padding: 2px;
       transition: all 0.2s;
+      border-radius: 50%;
       color: #000;
       &:hover {
-        background-color: #8a8787;
-        border-radius: 50%;
+        background-color: #000;
       }
     }
   }

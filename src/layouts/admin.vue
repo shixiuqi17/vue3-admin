@@ -26,6 +26,11 @@
 import EMenu from "@/components/layouts/Menu.vue";
 import Navbar from "@/components/layouts/Navbar.vue";
 import HistoryNav from "@/components/layouts/HistoryNav.vue";
+import { useMenuStore } from "@/store/menu";
+
+// 初始化路由菜单
+const menu = useMenuStore();
+menu.menuInit();
 </script>
 
 <style lang="scss" scoped>

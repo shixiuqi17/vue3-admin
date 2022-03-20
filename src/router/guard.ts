@@ -1,4 +1,5 @@
 // import { useMenuStore } from "@/store/menu";
+import { useMenuStore } from "@/store/menu";
 import store from "@/utils/store";
 import { RouteLocationNormalized, Router } from "vue-router";
 
@@ -11,8 +12,8 @@ class Guard {
       if (this.isLogin(to, token?.token) === false) return { name: "login" };
       if (this.isGuest(to, token?.token) === false) return from;
 
-      // useMenuStore().addHistoryMenus(to)
-      // const routerList = useMenuStore();
+      // 添加路由历史菜单
+      useMenuStore().addHistoryMenu(to);
     });
   }
 
