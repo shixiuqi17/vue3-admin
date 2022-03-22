@@ -12,12 +12,6 @@
         <!-- 通知栏 -->
         <Notification />
 
-        <!-- 全屏按钮 -->
-        <div class="fullScreen" @click="fullScrren">
-          <i v-show="isFullScreen" class="iconfont icon-tuichuquanping"></i>
-          <i v-show="!isFullScreen" class="iconfont icon-quanping"></i>
-        </div>
-
         <!-- 双语切换 -->
         <div class="translate">
           <el-dropdown>
@@ -39,6 +33,12 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
+        </div>
+
+        <!-- 全屏按钮 -->
+        <div class="fullScreen" @click="fullScrren">
+          <i v-show="isFullScreen" class="iconfont icon-tuichuquanping"></i>
+          <i v-show="!isFullScreen" class="iconfont icon-quanping"></i>
         </div>
 
         <!-- 头像部分 -->

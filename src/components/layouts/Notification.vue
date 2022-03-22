@@ -14,7 +14,7 @@
       leave-active-class="animate__fadeOut"
     >
       <el-tabs v-model="activeName" class="demo-tabs">
-        <el-tab-pane label="通知" name="notice">
+        <el-tab-pane :label="$t('notification')" name="notice">
           <div
             class="notice-item"
             v-for="(item, index) in noitceData"
@@ -24,7 +24,7 @@
             <div class="title">{{ item.title }}</div>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="站内信" name="message">
+        <el-tab-pane :label="$t('message', { msg: '站内信' })" name="message">
           <div
             class="notice-item"
             v-for="(item, index) in messageData"
@@ -75,7 +75,7 @@ const messageData: IMessageDatta[] = [
 }
 .notice-wapper {
   position: relative;
-  margin-right: 20px;
+  margin-right: 25px;
   .iconfont {
     cursor: pointer;
   }

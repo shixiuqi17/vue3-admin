@@ -17,6 +17,8 @@ const btn = {
   logout: "logout",
   chinese: "中文简体",
   english: "English",
+  message: "message",
+  notification: "notification",
   backHomePage: "back to the home page"
 };
 

@@ -17,6 +17,8 @@ const btn = {
   logout: "退出登录",
   chinese: "中文简体",
   english: "English",
+  message: "{msg}",
+  notification: "通知",
   backHomePage: "回到首页"
 };
 
