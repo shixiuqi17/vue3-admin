@@ -10,7 +10,8 @@ export const useMenuStore = defineStore("menus", {
       menus: [] as IMenu[],
       historyMenu: [
         { title: "首页", name: "home", routerLink: "/home" }
-      ] as IMenu[]
+      ] as IMenu[],
+      routeCrumbs: null as null | RouteLocationNormalized
     };
   },
   actions: {
@@ -20,6 +21,9 @@ export const useMenuStore = defineStore("menus", {
         (store.get("historyMenu") as IMenu[]) ?? this.historyMenu;
 
       if (!route.meta?.menu) return;
+
+      // 面包屑导航
+      this.routeCrumbs = route;
 
       const menu: IMenu = {
         ...route.meta.menu,

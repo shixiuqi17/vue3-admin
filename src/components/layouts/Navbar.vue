@@ -1,21 +1,12 @@
 <template>
   <div class="navbar">
     <i
-      v-if="isCollapse"
-      class="collapse iconfont icon-cebianlandanchu"
-      @click="toggleSideBar"
-    ></i>
-    <i
-      v-else
-      class="collapse iconfont icon-cebianlanshousuo"
+      :class="['collapse', 'iconfont', collapseIcon]"
       @click="toggleSideBar"
     ></i>
     <div>
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-        <el-breadcrumb-item>promotion list</el-breadcrumb-item>
-        <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
-      </el-breadcrumb>
+      <!-- 面包屑 -->
+      <BreadCrumb />
 
       <div class="nav-right">
         <!-- 通知栏 -->
@@ -76,11 +67,12 @@
 
 <script lang="ts" setup>
 import Notification from "./Notification.vue";
+import BreadCrumb from "./BreadCrumb.vue";
 import { ArrowDown } from "@element-plus/icons-vue";
 import { useI18n } from "vue-i18n";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import emitter from "@/plugins/mitt";
 
 const router = useRouter();
@@ -113,6 +105,9 @@ const toggleSideBar = () => {
   isCollapse.value = !isCollapse.value;
   emitter.emit("isCollapse", isCollapse.value);
 };
+let collapseIcon = computed(() => {
+  return isCollapse.value ? "icon-cebianlandanchu" : "icon-cebianlanshousuo";
+});
 
 // 退出登录
 const logout = () => {
