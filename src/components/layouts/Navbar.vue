@@ -16,7 +16,14 @@
         <el-breadcrumb-item>promotion list</el-breadcrumb-item>
         <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
       </el-breadcrumb>
+
       <div class="nav-right">
+        <!-- 全屏按钮 -->
+        <div class="fullScreen" @click="fullScrren">
+          <i v-show="isFullScreen" class="iconfont icon-tuichuquanping"></i>
+          <i v-show="!isFullScreen" class="iconfont icon-quanping"></i>
+        </div>
+
         <!-- 双语切换 -->
         <div class="translate">
           <el-dropdown>
@@ -74,6 +81,17 @@ import emitter from "@/plugins/mitt";
 
 const router = useRouter();
 
+// 全屏
+let isFullScreen = ref(false);
+const fullScrren = () => {
+  if (isFullScreen.value) {
+    document.exitFullscreen();
+  } else {
+    document.documentElement.requestFullscreen();
+  }
+  isFullScreen.value = !isFullScreen.value;
+};
+
 // 切换语言
 const { locale, t } = useI18n();
 const changeLanguage = (language: string) => {
@@ -106,20 +124,33 @@ const logout = () => {
   display: flex;
   align-items: center;
   padding: 10px 15px;
+
   .collapse {
     margin-right: 20px;
     cursor: pointer;
   }
+
+  .iconfont {
+    font-size: 20px;
+  }
+
   & > div {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
+  .fullScreen {
+    margin-right: 15px;
+    cursor: pointer;
+  }
+
   .translate {
     margin-right: 20px;
     cursor: pointer;
   }
+
   .nav-right {
     display: flex;
     align-items: center;
