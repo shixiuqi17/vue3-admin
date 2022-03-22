@@ -20,7 +20,7 @@
             v-for="(item, index) in noitceData"
             :key="index"
           >
-            <img :src="`src/assets/images/avatar/${item.img}`" alt="" />
+            <img :src="`/src/assets/images/avatar/${item.img}`" alt="" />
             <div class="title">{{ item.title }}</div>
           </div>
         </el-tab-pane>
@@ -30,7 +30,7 @@
             v-for="(item, index) in messageData"
             :key="index"
           >
-            <img :src="`src/assets/images/avatar/${item.img}`" alt="" />
+            <img :src="`/src/assets/images/avatar/${item.img}`" alt="" />
             <div class="title">{{ item.title }}</div>
           </div>
         </el-tab-pane>
