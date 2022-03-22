@@ -135,12 +135,12 @@ const resetForm = (formEl: FormInstance | undefined) => {
 <style lang="scss" scoped>
 .login-container {
   position: fixed;
-  background: url("@/assets/images/login_bg.jpg") no-repeat;
+  background: url("@/assets/images/background/login_bg.jpg") no-repeat;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   .login-form-wapper {
-    background: url("@/assets/images/login_form_bg.png") no-repeat;
+    background: url("@/assets/images/background/login_form_bg.png") no-repeat;
     width: 400px;
     padding: 30px 30px 15px;
     position: absolute;

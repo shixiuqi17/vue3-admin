@@ -18,6 +18,9 @@
       </el-breadcrumb>
 
       <div class="nav-right">
+        <!-- 通知栏 -->
+        <Notification />
+
         <!-- 全屏按钮 -->
         <div class="fullScreen" @click="fullScrren">
           <i v-show="isFullScreen" class="iconfont icon-tuichuquanping"></i>
@@ -49,7 +52,7 @@
 
         <!-- 头像部分 -->
         <div class="avatar">
-          <img src="@/assets/images/15919_100.gif" alt="" />
+          <img src="@/assets/images/avatar/15919_100.gif" alt="" />
           <el-dropdown>
             <span class="el-dropdown-link">
               <span>admin</span>
@@ -72,6 +75,7 @@
 </template>
 
 <script lang="ts" setup>
+import Notification from "./Notification.vue";
 import { ArrowDown } from "@element-plus/icons-vue";
 import { useI18n } from "vue-i18n";
 import { ElMessage } from "element-plus";
@@ -127,11 +131,8 @@ const logout = () => {
 
   .collapse {
     margin-right: 20px;
+    font-size: 14px;
     cursor: pointer;
-  }
-
-  .iconfont {
-    font-size: 20px;
   }
 
   & > div {
@@ -142,7 +143,7 @@ const logout = () => {
   }
 
   .fullScreen {
-    margin-right: 15px;
+    margin-right: 20px;
     cursor: pointer;
   }
 
