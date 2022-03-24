@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import router from "@/router";
 import { handleRouteLink } from "@/utils";
 import { IMenu } from "types/menu";
-import { RouteLocationNormalized } from "vue-router";
+import { RouteLocationNormalized, RouteRecordRaw } from "vue-router";
 import store from "@/utils/store";
 export const useMenuStore = defineStore("menus", {
   state: () => {
@@ -15,10 +15,22 @@ export const useMenuStore = defineStore("menus", {
     };
   },
   actions: {
+    // 获取路由历史菜单
+    getHistoryMenu() {
+      const routes = [] as RouteRecordRaw[];
+      router.getRoutes().map((c) => routes.push(...c.children));
+      let menus: IMenu[] =
+        (store.get("historyMenu") as IMenu[]) ?? this.historyMenu;
+
+      // 筛选注册路由组中的菜单
+      return menus.filter((menu) => {
+        return routes.some((route) => route.name == menu.name);
+      });
+    },
+
     // 添加路由历史菜单
     addHistoryMenu(route: RouteLocationNormalized) {
-      this.historyMenu =
-        (store.get("historyMenu") as IMenu[]) ?? this.historyMenu;
+      this.historyMenu = this.getHistoryMenu();
 
       if (!route.meta?.menu) return;
 
