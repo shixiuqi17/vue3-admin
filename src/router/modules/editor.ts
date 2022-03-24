@@ -15,16 +15,10 @@ const editorPage = [
     component: () => import("@/layouts/admin.vue"),
     children: [
       {
-        path: "markDown",
-        name: "markdown",
-        meta: { menu: { title: "富文本编辑器" } },
-        component: () => import("@/views/editor/index.vue")
-      },
-      {
-        path: "cat",
-        name: "cat",
-        meta: { menu: { title: "毛毛毛" } },
-        component: () => import("@/components/svg/cat.vue")
+        path: "toastEditor",
+        name: "toastEditor",
+        meta: { menu: { title: "toastEditor" } },
+        component: () => import("@/views/editor/toastEditor.vue")
       }
     ]
   }
