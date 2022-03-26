@@ -113,10 +113,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
       return false;
     }
 
-    // const {
-    //   data: { token }
-    // } = await login(loginForm);
-    const token = "KGtm*WzYf0r6xC@ILY&(";
+    const {
+      data: { token }
+    } = await login(loginForm);
+    // const token = "KGtm*WzYf0r6xC@ILY&(";
     store.set("token", { token });
     ElMessage({
       message: t("loginSuccessful"),
