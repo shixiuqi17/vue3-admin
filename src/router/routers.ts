@@ -7,6 +7,10 @@ const routers = [
     path: "",
     redirect: "/home"
   },
+  // {
+  //   path:'/vue3-admin/',
+  //   redirect: "/home"
+  // },
   // 登录页
   {
     path: "/login",

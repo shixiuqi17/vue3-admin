@@ -2,6 +2,7 @@ import { defineConfig, ConfigEnv, loadEnv } from "vite";
 import alias from "./vite/alias";
 import { parseEnv } from "./vite/utils";
 import setupVitePlugins from "./vite/plugins";
+import { visualizer } from "rollup-plugin-visualizer";
 
 // export default defineConfig({
 //   plugins: [vue()],
@@ -26,10 +27,10 @@ export default ({ command, mode }: ConfigEnv) => {
   }
   return {
     // plugins: [vue()], // vite统一管理插件
-    plugins: setupVitePlugins(isBuild, env),
+    plugins: [...setupVitePlugins(isBuild, env), visualizer()],
     resolve: {
       alias
     },
-    base: "./"
+    base: "/vue3-admin/"
   };
 };

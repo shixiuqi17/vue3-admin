@@ -75,6 +75,7 @@ const messageData: IMessageDatta[] = [
 }
 .notice-wapper {
   position: relative;
+  z-index: 9999;
   margin-right: 25px;
   .iconfont {
     cursor: pointer;
