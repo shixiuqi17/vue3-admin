@@ -7,10 +7,6 @@ const routers = [
     path: "",
     redirect: "/home"
   },
-  // {
-  //   path:'/vue3-admin/',
-  //   redirect: "/home"
-  // },
   // 登录页
   {
     path: "/login",
@@ -26,8 +22,8 @@ const routers = [
     component: () => import("@/views/error/404.vue")
   },
   ...homePage,
-  ...errorPage,
-  ...editorPage
+  ...editorPage,
+  ...errorPage
 ] as RouteRecordRaw[];
 
 export default routers;

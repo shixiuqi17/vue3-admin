@@ -8,7 +8,7 @@ const editorPage = [
     meta: {
       authentication: true,
       menu: {
-        title: "富文本编辑器",
+        title: "编辑器",
         icon: "icon-fuwenbenbianjiqi_ziti"
       }
     },
@@ -17,8 +17,14 @@ const editorPage = [
       {
         path: "toastEditor",
         name: "toastEditor",
-        meta: { menu: { title: "toastEditor" } },
+        meta: { menu: { title: "toast-ui-editor" } },
         component: () => import("@/views/editor/toastEditor.vue")
+      },
+      {
+        path: "wangEditor",
+        name: "wangEditor",
+        meta: { menu: { title: "wang-editor" } },
+        component: () => import("@/views/editor/wangEditor.vue")
       }
     ]
   }

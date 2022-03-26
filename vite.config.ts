@@ -31,6 +31,6 @@ export default ({ command, mode }: ConfigEnv) => {
     resolve: {
       alias
     },
-    base: "/vue3-admin/"
+    // base: "/vue3-admin/"
   };
 };

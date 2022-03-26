@@ -11,7 +11,7 @@
 import { ref } from "vue";
 import ToastEditor from "@/components/markdown/ToastEditor/index.vue";
 
-const content = ref("");
+const content = ref("初始内容");
 </script>
 
 <style lang="scss" scoped>
