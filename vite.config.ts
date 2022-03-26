@@ -29,6 +29,7 @@ export default ({ command, mode }: ConfigEnv) => {
     plugins: setupVitePlugins(isBuild, env),
     resolve: {
       alias
-    }
+    },
+    base: "./"
   };
 };
