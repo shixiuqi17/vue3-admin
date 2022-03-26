@@ -1,1 +1,0 @@
-import{_ as e}from"./index.c6dcc374.js";import{o as r,m as o}from"./vendor.27bab175.js";const a={};function s(n,c){return r(),o("div",null,"asdsadsada")}var m=e(a,[["render",s]]);export{m as default};
