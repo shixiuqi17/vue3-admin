@@ -31,6 +31,9 @@ export default ({ command, mode }: ConfigEnv) => {
     resolve: {
       alias
     },
+    server: {
+      open: true //vite项目启动时自动打开浏览器
+    }
     // base: "/vue3-admin/"
   };
 };
