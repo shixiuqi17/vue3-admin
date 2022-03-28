@@ -8,7 +8,10 @@ const text = {
   userNameLength: "用户名长度需在{length}个字符",
   passwordLength: "密码长度需在{length}个字符",
   loginSuccessful: "登录成功 , 欢迎来到 Vue Admin !",
-  accountError: "账号或密码错误"
+  accountError: "账号或密码错误",
+  selectProvince: "请选择省份",
+  selectCity: "请选择城市",
+  selectArea: "请选择区域"
 };
 
 const btn = {

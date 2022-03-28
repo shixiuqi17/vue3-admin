@@ -8,7 +8,10 @@ const text = {
   userNameLength: "The user name must be {length} characters",
   passwordLength: "The password must be {length} characters",
   loginSuccessful: "Login is successful , Welcome to Vue Admin !",
-  accountError: "The account or password is incorrect"
+  accountError: "The account or password is incorrect",
+  selectProvince: "please select a province",
+  selectCity: "please select a city",
+  selectArea: "please select an area"
 };
 
 const btn = {

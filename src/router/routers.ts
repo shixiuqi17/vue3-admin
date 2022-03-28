@@ -2,6 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 import homePage from "./modules/home";
 import errorPage from "./modules/error";
 import editorPage from "./modules/editor";
+import componentsPage from "./modules/componentsPage";
 const routers = [
   {
     path: "",
@@ -23,6 +24,7 @@ const routers = [
   },
   ...homePage,
   ...editorPage,
+  ...componentsPage,
   ...errorPage
 ] as RouteRecordRaw[];
 
