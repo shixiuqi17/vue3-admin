@@ -18,3 +18,7 @@ body,
   fill: currentColor;
   overflow: hidden;
 }
+
+.notification-el-popover {
+  padding: 0 !important;
+}

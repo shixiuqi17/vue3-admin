@@ -29,6 +29,6 @@ const selectAreaData = (val: any) => {
 
 <style lang="scss" scoped>
 .el-card {
-  height: 200px;
+  height: 230px;
 }
 </style>

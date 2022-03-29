@@ -9,13 +9,7 @@
         </el-header>
         <el-main>
           <router-view #default="{ Component }">
-            <!-- <transition
-              class="animate__animated"
-              enter-active-class="animate__fadeInRight"
-              leave-active-class="animate__fadeOutLeft"
-            > -->
             <component :is="Component"></component>
-            <!-- </transition> -->
           </router-view>
         </el-main>
       </el-container>
@@ -28,7 +22,6 @@ import EMenu from "@/components/layouts/Menu.vue";
 import Navbar from "@/components/layouts/Navbar.vue";
 import HistoryNav from "@/components/layouts/HistoryNav.vue";
 import { useMenuStore } from "@/store/menu";
-
 // 初始化路由菜单
 const menu = useMenuStore();
 menu.menuInit();

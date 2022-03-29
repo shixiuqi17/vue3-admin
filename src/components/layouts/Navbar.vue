@@ -10,7 +10,14 @@
 
       <div class="nav-right">
         <!-- 通知栏 -->
-        <Notification />
+        <notification class="notification" value="9">
+          <template #default>
+            <notification-list
+              :list="notificationData"
+              :actions="notificationActionsData"
+            />
+          </template>
+        </notification>
 
         <!-- 双语切换 -->
         <div class="translate">
@@ -66,16 +73,36 @@
 </template>
 
 <script lang="ts" setup>
-import Notification from "./Notification.vue";
+import Notification from "@/components/notification/index.vue";
+import NotificationList from "@/components/notificationList/index.vue";
 import BreadCrumb from "./BreadCrumb.vue";
 import { ArrowDown } from "@element-plus/icons-vue";
 import { useI18n } from "vue-i18n";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 import emitter from "@/plugins/mitt";
+import { getNotificationData } from "@/apis/notification";
+import { ActionOptions, ListOptions } from "../notificationList/types";
 
 const router = useRouter();
+
+// 获取通知栏数据
+let notificationData = ref([] as ListOptions[]);
+onMounted(async () => {
+  const { data } = await getNotificationData();
+  notificationData.value = data;
+});
+const notificationActionsData: ActionOptions[] = [
+  {
+    text: "清空代办",
+    icon: "icon-delete"
+  },
+  {
+    text: "查看更多",
+    icon: "icon-more"
+  }
+];
 
 // 全屏
 let isFullScreen = ref(false);
@@ -150,6 +177,9 @@ const logout = () => {
   .nav-right {
     display: flex;
     align-items: center;
+    .notification {
+      margin-right: 20px;
+    }
     .avatar {
       display: flex;
       align-items: center;
