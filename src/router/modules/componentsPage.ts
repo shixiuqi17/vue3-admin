@@ -14,7 +14,7 @@ const componentsPage = [
       {
         path: "",
         name: "selectArea",
-        meta: { menu: { title: "省市区选择器" } },
+        meta: { menu: { title: "省市区三级联动" } },
         component: () => import("@/views/compView/selectArea.vue")
       }
     ]
