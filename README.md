@@ -1,10 +1,12 @@
 ```bash
 # 克隆项目
 git clone  https://gitee.com/shi-xiuqi/vue3-admin.git
+
 # 安装依赖
 npm i
+
 # 本地开发 启动项目
-npm run serve
+npm run dev
 ```
 
 Vue 3 + Typescript + Vite

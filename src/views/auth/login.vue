@@ -122,7 +122,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
       message: t("loginSuccessful"),
       type: "success"
     });
-    router.push({ name: "home" });
+    router.push('/home');
   });
 };
 

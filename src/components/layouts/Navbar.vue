@@ -73,8 +73,8 @@
 </template>
 
 <script lang="ts" setup>
-import Notification from "@/components/notification/index.vue";
-import NotificationList from "@/components/notificationList/index.vue";
+import Notification from "@/components/compSecondDev/notification/index.vue";
+import NotificationList from "@/components/compSecondDev/notificationList/index.vue";
 import BreadCrumb from "./BreadCrumb.vue";
 import { ArrowDown } from "@element-plus/icons-vue";
 import { useI18n } from "vue-i18n";
@@ -83,7 +83,10 @@ import { useRouter } from "vue-router";
 import { computed, ref, onMounted } from "vue";
 import emitter from "@/plugins/mitt";
 import { getNotificationData } from "@/apis/notification";
-import { ActionOptions, ListOptions } from "../notificationList/types";
+import {
+  ActionOptions,
+  ListOptions
+} from "@/components/compSecondDev/notificationList/types";
 
 const router = useRouter();
 

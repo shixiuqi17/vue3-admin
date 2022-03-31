@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import SelectArea from "@/components/selectArea/index.vue";
+import SelectArea from "@/components/compSecondDev/selectArea/index.vue";
 import { ref } from "vue";
 
 let data = ref({} as any);
