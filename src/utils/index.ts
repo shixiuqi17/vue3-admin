@@ -28,11 +28,13 @@ export function deepClone(obj: object | any): object | null {
 
 // 拼接跳转路由路径
 export function handleRouteLink(routePath: string, routeChildPath: string) {
-  if (routePath === "") {
+  if (routePath === "" || /^\//.test(routeChildPath)) {
     return routeChildPath;
-  } else if (routeChildPath === "") {
-    return routePath;
-  } else {
-    return `${routePath}/${routeChildPath}`;
   }
+
+  if (routeChildPath === "") {
+    return routePath;
+  }
+
+  return `${routePath}/${routeChildPath}`;
 }

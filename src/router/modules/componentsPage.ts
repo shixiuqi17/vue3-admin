@@ -4,18 +4,24 @@ import { RouteRecordRaw } from "vue-router";
 const componentsPage = [
   // 级联选择器 - 省市区选择
   {
-    path: "/selectArea",
-    name: "cascader",
+    path: "/component",
+    name: "component",
     meta: {
-      menu: { title: "级联选择器", icon: "icon-cascader" }
+      menu: { title: "组件库二次封装", icon: "icon-kaifazujian" }
     },
     component: () => import("@/layouts/admin.vue"),
     children: [
       {
-        path: "",
+        path: "/selectArea",
         name: "selectArea",
         meta: { menu: { title: "省市区三级联动" } },
         component: () => import("@/views/compView/selectArea.vue")
+      },
+      {
+        path: "/selectDate",
+        name: "selectDate",
+        meta: { menu: { title: "日期选择器" } },
+        component: () => import("@/views/compView/selectDate.vue")
       }
     ]
   }
