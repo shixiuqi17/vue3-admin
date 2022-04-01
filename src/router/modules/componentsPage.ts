@@ -22,6 +22,12 @@ const componentsPage = [
         name: "selectDate",
         meta: { menu: { title: "日期选择器" } },
         component: () => import("@/views/compView/selectDate.vue")
+      },
+      {
+        path: "/selectCity",
+        name: "selectCity",
+        meta: { menu: { title: "城市选择器" } },
+        component: () => import("@/views/compView/selectCity.vue")
       }
     ]
   }

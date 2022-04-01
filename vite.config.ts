@@ -28,6 +28,13 @@ export default ({ command, mode }: ConfigEnv) => {
   return {
     // plugins: [vue()], // vite统一管理插件
     plugins: [...setupVitePlugins(isBuild, env), visualizer()],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "@/styles/variable.scss";'
+        }
+      }
+    },
     resolve: {
       alias
     },

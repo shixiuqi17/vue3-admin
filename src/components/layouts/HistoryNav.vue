@@ -73,16 +73,16 @@ const routerLink = (path: string) => {
     cursor: pointer;
     transition: all 0.3s;
     &.active {
-      background-color: #55c5d6;
-      border: 1px solid #55c5d6;
+      background-color: $myColor;
+      border: 1px solid $myColor;
       color: #fff;
       i {
         color: #fff;
       }
     }
     &:hover {
-      background-color: #55c5d6;
-      border: 1px solid #55c5d6;
+      background-color: $myColor;
+      border: 1px solid $myColor;
       color: #fff;
       i {
         color: #fff;

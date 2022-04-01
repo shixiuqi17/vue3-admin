@@ -44,7 +44,7 @@
 
 <script lang="ts" setup>
 import { watch, ref } from "vue";
-import pca from "./pca-code.json";
+import pca from "./data/pca-code.json";
 
 interface IPcaData {
   code: string;

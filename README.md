@@ -3,7 +3,7 @@
 git clone  https://gitee.com/shi-xiuqi/vue3-admin.git
 
 # 安装依赖
-npm i
+npm install
 
 # 本地开发 启动项目
 npm run dev
