@@ -28,6 +28,12 @@ const componentsPage = [
         name: "selectCity",
         meta: { menu: { title: "城市选择器" } },
         component: () => import("@/views/compView/selectCity.vue")
+      },
+      {
+        path: "/canEditTable",
+        name: "canEditTable",
+        meta: { menu: { title: "可编辑表单" } },
+        component: () => import("@/views/compView/canEditTable.vue")
       }
     ]
   }

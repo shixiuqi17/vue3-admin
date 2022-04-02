@@ -1,7 +1,7 @@
-import { deepClone } from "../src/utils/index";
+import _ from "lodash";
 
 export function parseEnv(env: Record<string, any>): ViteEnv {
-  const envs: any = deepClone(env);
+  const envs: any = _.cloneDeep(env);
   Object.entries(env).forEach(([key, value]) => {
     // 判断是否是布尔
     if (value == "true" || value == "false")

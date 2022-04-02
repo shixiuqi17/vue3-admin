@@ -7,25 +7,6 @@ export function toHumpName(str: string) {
   });
 }
 
-// 深拷贝
-export function deepClone(obj: object | any): object | null {
-  if (obj === null) return null;
-
-  if (typeof obj !== "object") return obj;
-
-  if (obj instanceof RegExp) return new RegExp(obj);
-
-  if (obj instanceof Date) return new Date(obj);
-
-  let result = new obj.constructor();
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      result[key] = deepClone(obj[key]);
-    }
-  }
-  return result;
-}
-
 // 拼接跳转路由路径
 export function handleRouteLink(routePath: string, routeChildPath: string) {
   if (routePath === "" || /^\//.test(routeChildPath)) {

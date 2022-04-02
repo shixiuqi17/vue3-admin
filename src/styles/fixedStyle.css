@@ -1,0 +1,27 @@
+/* 左外边距  START*/
+.mgl-5 {
+  margin-left: 5px;
+}
+
+/* 右外边距 START */
+.mgr-5 {
+  margin-right: 5px;
+}
+
+/* flex布局  START*/
+.flex {
+  display: flex;
+}
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+.flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+.flexible {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
